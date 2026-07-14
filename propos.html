@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>À Propos | Les Pros de la Tech</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@700;800;900&amp;family=Noto+Sans:wght@400;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffd700",
+                    "surface-dim": "#161308",
+                    "on-background": "#eae2cf",
+                    "inverse-surface": "#eae2cf",
+                    "primary": "#fff6df",
+                    "error-container": "#93000a",
+                    "inverse-on-surface": "#343024",
+                    "surface": "#161308",
+                    "surface-container-highest": "#393528",
+                    "surface-bright": "#3d392c",
+                    "on-tertiary": "#00363a",
+                    "tertiary-fixed-dim": "#00dbe8",
+                    "surface-container-low": "#1f1b10",
+                    "outline-variant": "#4d4732",
+                    "on-primary-fixed": "#221b00",
+                    "background": "#161308",
+                    "on-primary-fixed-variant": "#544600",
+                    "surface-container-lowest": "#110e05",
+                    "inverse-primary": "#705d00",
+                    "surface-tint": "#e9c400",
+                    "primary-container": "#ffd700",
+                    "surface-container-high": "#2e2a1e",
+                    "on-secondary-container": "#dba9a4",
+                    "on-surface-variant": "#d0c6ab",
+                    "on-tertiary-container": "#006a70",
+                    "on-primary-container": "#705e00",
+                    "primary-fixed-dim": "#e9c400",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#2f1311",
+                    "on-primary": "#3a3000",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#002022",
+                    "surface-variant": "#393528",
+                    "secondary-container": "#623d3a",
+                    "secondary": "#eebab5",
+                    "surface-container": "#231f14",
+                    "on-secondary": "#482724",
+                    "secondary-fixed": "#ffdad6",
+                    "secondary-fixed-dim": "#eebab5",
+                    "tertiary-fixed": "#79f5ff",
+                    "on-secondary-fixed-variant": "#623d3a",
+                    "on-surface": "#eae2cf",
+                    "tertiary-container": "#00f1ff",
+                    "on-tertiary-fixed-variant": "#004f54",
+                    "outline": "#999077",
+                    "tertiary": "#defcff",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container_max_width": "1280px",
+                    "gutter": "24px",
+                    "margin_desktop": "40px",
+                    "margin_mobile": "16px",
+                    "base_unit": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Noto Sans"],
+                    "code-snippet": ["JetBrains Mono"],
+                    "display-lg": ["Public Sans"],
+                    "body-lg": ["Noto Sans"],
+                    "display-lg-mobile": ["Public Sans"],
+                    "headline-md": ["Public Sans"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "code-snippet": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #161308;
+            color: #eae2cf;
+            background-image: radial-gradient(#321c1a 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(22, 19, 8, 0.4), rgba(22, 19, 8, 0.95));
+        }
+        .faq-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .faq-accordion-item.active .faq-accordion-content {
+            max-height: 500px;
+            opacity: 1;
+        }
+        .faq-accordion-item.active .faq-chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md">
+
+<!-- TopAppBar Section -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface border-b border-outline-variant/20 shadow-md">
+    <nav class="flex justify-between items-center px-gutter py-4 max-w-container_max_width mx-auto">
+        <div class="flex items-center gap-3" data-purpose="brand-logo">
+            <div class="w-10 h-10 flex items-center justify-center">
+                <svg class="w-full h-full fill-lpt-yellow" viewBox="0 0 100 100">
+                    <path d="M50 0 L100 50 L50 100 L0 50 Z" fill="none" stroke="#FFD700" stroke-width="8"></path>
+                    <path d="M50 20 L80 50 L50 80 L20 50 Z" fill="#FFD700"></path>
+                </svg>
+            </div>
+            <div class="flex flex-col leading-none font-bold text-xl uppercase">
+                <span class="">LES PROS</span>
+                <span class="text-white">de la Tech</span>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="index.html">Retour à l'index</a>
+            <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="accueil.html">Accueil</a>
+            <a class="text-primary-fixed font-bold border-b-2 border-primary-fixed pb-1 hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95" href="propos.html">A Propos</a>
+            <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="projet.html">Nos Projets</a>
+            <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="mission.html">Mission</a>
+            <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="contact.html">Contact</a>
+            <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="jeux.html">Jeux</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a class="bg-primary-container text-on-primary-fixed font-bold px-6 py-2 rounded-lg hover:shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all active:scale-95 font-body-md" target="_blank" href="https://os.rudore.co/lpt/challenges/public">Commencer</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Content (Ajout d'une marge supérieure pour éviter que le header fixe ne cache le hero) -->
+<main class="flex-1 pt-20">
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 px-6 md:px-40 hero-pattern border-b border-[#472724]">
+        <div class="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1 space-y-6">
+                <h1 class="text-5xl code-snippet:text-7xl font-black tracking-tighter">Web Dev <span class="text-primary-fixed">Challenge</span></h1>
+                <h2 class="text-2xl md:text-3xl font-bold text-[#c89893]">La plateforme qui transforme les curieux en créateurs du web.</h2>
+                <p class="text-lg text-[#c89893] leading-relaxed max-w-2xl">
+                    Notre mission est de démocratiser l'apprentissage du développement web en supprimant la barrière entre la théorie et la réalité du métier. Nous croyons qu'apprendre à coder ne devrait pas être un parcours solitaire et fastidieux, mais une aventure quotidienne stimulante portée par une communauté passionnée.
+                </p>
+            </div>
+            <div class="flex-1 w-full">
+                <div class="relative rounded-2xl overflow-hidden border border-[#472724] shadow-2xl">
+                    <img alt="Espace de travail moderne pour le développement web" class="w-full aspect-video object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLu_dBa5JOg4EtDL1sePLQDa_4sCfqW9IQEnM-6CNs2m20gyu7roCosOITnfnN5N920zPOkv9htyaYAoKWjmO-V6K91Oo-5Z-WCeLUrmaSQddS13LRuKMSg7y8j6Qkb-JqoaXqQww2JqmE2jPkc6vRYGsL-pHO1A2zOAwZjpiE8-oabLgM76PfbmzW-FXve4qbUj6jNjcPh3zQ8oyMKMRKUPnpimA8VIdY1rzqeW7dE_9QyRxDc2tdMkChGu"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#221311]/60 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Quote Section -->
+    <section class="px-6 md:px-40 py-24 max-w-[1280px] mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-10">
+                <div class="space-y-4">
+                    <h3 class="text-3xl font-bold">Pourquoi nous existons</h3>
+                    <p class="text-[#c89893] leading-relaxed italic">
+                        Trop de talents abandonnent parce que les ressources traditionnelles sont déconnectées du monde réel. Web Dev Challenge est né pour combler ce fossé.
+                    </p>
+                    <p class="text-[#c89893] leading-relaxed">
+                        Nous avons conçu un écosystème où chaque ligne de code écrite vous rapproche d'un projet concret. Que vous soyez étudiant en reconversion ou passionné autodidacte, notre approche par la pratique assure une mémorisation durable et un portfolio qui parle de lui-même.
+                    </p>
+                </div>
+                <div class="bg-primary-fixed/5 border-l-4 border-primary-fixed p-8 rounded-r-xl">
+                    <blockquote class="relative">
+                        <span class="material-symbols-outlined text-primary-fixed text-4xl absolute -top-4 -left-2 opacity-50">format_quote</span>
+                        <p class="text-xl font-medium leading-relaxed italic text-white pl-6">
+                            La meilleure façon d'apprendre le web n'est pas de lire comment les autres l'ont construit, mais de poser soi-même les premières briques, jour après jour.
+                        </p>
+                        <footer class="mt-4 pl-6 text-primary-fixed font-bold text-sm">— L'équipe Web Dev Challenge</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <div class="bg-[#1a0e0c] border border-[#472724] p-10 rounded-2xl space-y-8">
+                    <h3 class="text-2xl font-bold flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary-fixed">rocket_launch</span>
+                        Fonctionnalités Clés
+                    </h3>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <div class="shrink-0 size-10 rounded bg-[#321c1a] border border-[#472724] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary-fixed">event_available</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Défis Quotidiens</h4>
+                                <p class="text-sm text-[#c89893]">Un nouveau challenge d'interface chaque matin pour muscler votre CSS et votre logique HTML.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="shrink-0 size-10 rounded bg-[#321c1a] border border-[#472724] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary-fixed">groups</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Communauté Interactive</h4>
+                                <p class="text-sm text-[#c89893]">Échangez des retours avec les autres apprenants et progressez ensemble.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="shrink-0 size-10 rounded bg-[#321c1a] border border-[#472724] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary-fixed">military_tech</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Système de Récompenses</h4>
+                                <p class="text-sm text-[#c89893]">Gagnez des kikos et grimpez dans le classement pour rester motivé tout au long de votre parcours.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="shrink-0 size-10 rounded bg-[#321c1a] border border-[#472724] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary-fixed">code_blocks</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Correction Assistée</h4>
+                                <p class="text-sm text-[#c89893]">Accédez à des solutions détaillées et des bonnes pratiques pour chaque défi terminé.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="px-6 md:px-40 py-24 max-w-[1280px] mx-auto">
+        <h2 class="text-4xl font-black text-center mb-12">Nos Services</h2>
+        <div class="flex flex-col md:flex-row justify-center items-stretch gap-8">
+            <!-- Service 1 -->
+            <div class="flex-1 p-6 bg-[#2a1a18] border border-[#472724] border-t-4 border-blue-500 rounded-xl shadow-2xl">
+                <h3 class="text-xl font-bold mb-4">Formation Accélérée</h3>
+                <p class="text-[#c89893] text-sm leading-relaxed">Apprenez les bases et les concepts avancés du web en un temps record avec notre méthode intensive.</p>
+            </div>
+            <!-- Service 2 -->
+            <div class="flex-1 p-6 bg-[#2a1a18] border border-[#472724] border-t-4 border-primary-fixed rounded-xl shadow-2xl">
+                <h3 class="text-xl font-bold mb-4">Projets Réels</h3>
+                <p class="text-[#c89893] text-sm leading-relaxed">Travaillez sur des cas concrets issus du monde professionnel pour construire un portfolio solide.</p>
+            </div>
+            <!-- Service 3 -->
+            <div class="flex-1 p-6 bg-[#2a1a18] border border-[#472724] border-t-4 border-purple-500 rounded-xl shadow-2xl">
+                <h3 class="text-xl font-bold mb-4">Accompagnement</h3>
+                <p class="text-[#c89893] text-sm leading-relaxed">Bénéficiez d'un suivi personnalisé et de retours constructifs pour ne jamais rester bloqué.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="px-6 md:px-40 py-24 text-center">
+        <div class="bg-primary-container p-12 rounded-3xl text-on-primary-fixed relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-black/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+            <div class="absolute bottom-0 left-0 w-32 h-32 bg-black/5 rotate-45 -translate-x-1/2 translate-y-1/2"></div>
+            <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+                <h2 class="text-4xl font-black tracking-tight text-on-primary-fixed">Le web ne va pas se construire tout seul.</h2>
+                <p class="text-xl font-medium opacity-80">
+                    Rejoignez l'aventure aujourd'hui et commencez à coder vos premières interfaces professionnelles.
+                </p>
+                <div class="pt-6">
+                    <a class="inline-flex items-center justify-center px-8 py-4 bg-surface text-white rounded-xl font-bold text-lg hover:scale-105 transition-transform active:scale-95 shadow-2xl" href="index.html">
+                        Commencer l'aventure
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer Section -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10 w-full rounded-t-xl mt-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-base_unit py-margin_desktop px-gutter max-w-container_max_width mx-auto">
+        <div class="col-span-1 md:col-span-1">
+            <div class="text-headline-md font-headline-md text-primary font-bold mb-4">Les Pros de la Tech</div>
+            <p class="text-on-surface-variant font-label-sm text-label-sm opacity-80">© 2026 Les Pros de la Tech.</p>
+            <p class="text-on-surface-variant font-label-sm text-label-sm opacity-80">La Tech comme passion.</p>
+            <div class="flex gap-4 mt-6">
+                <span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">terminal</span>
+                <span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">code</span>
+                <span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">hub</span>
+            </div>
+        </div>
+        <div>
+            <h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Plateforme</h4>
+            <ul class="space-y-2">
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Défis</a></li>
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Classement</a></li>
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Certifications</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Légal</h4>
+            <ul class="space-y-2">
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Mentions Légales</a></li>
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Confidentialité</a></li>
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Conditions d'utilisation</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Support</h4>
+            <ul class="space-y-2">
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Support Technique</a></li>
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="accueil.html#FAQ">FAQ</a></li>
+                <li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, { threshold: 0.05 });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-8');
+            observer.observe(section);
+        });
+    });
+</script>
+</body>
+</html>

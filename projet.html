@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Projets | Les Pros de la Tech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800&amp;family=Noto+Sans:wght@400;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #161308;
+            background-image: radial-gradient(#321c1a 1px, transparent 0);
+            background-size: 24px 24px;
+            color: #eae2cf;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .project-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+            background-color: rgba(22, 19, 8, 0.8);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1f1b10;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ffd700;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#999077",
+                        "surface-container-low": "#1f1b10",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#d0c6ab",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "secondary-fixed": "#ffdad6",
+                        "surface-bright": "#3d392c",
+                        "on-secondary-container": "#dba9a4",
+                        "surface-variant": "#393528",
+                        "on-surface": "#eae2cf",
+                        "on-secondary": "#482724",
+                        "surface-container-high": "#2e2a1e",
+                        "primary-container": "#ffd700",
+                        "on-secondary-fixed": "#2f1311",
+                        "tertiary-fixed": "#79f5ff",
+                        "on-error": "#690005",
+                        "primary-fixed-dim": "#e9c400",
+                        "primary": "#fff6df",
+                        "on-primary-fixed": "#221b00",
+                        "on-background": "#eae2cf",
+                        "secondary-fixed-dim": "#eebab5",
+                        "on-tertiary-fixed": "#002022",
+                        "on-primary-container": "#705e00",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#ffd700",
+                        "on-tertiary": "#00363a",
+                        "tertiary": "#defcff",
+                        "surface-container-lowest": "#110e05",
+                        "surface-dim": "#161308",
+                        "on-tertiary-container": "#006a70",
+                        "secondary": "#eebab5",
+                        "inverse-on-surface": "#343024",
+                        "inverse-primary": "#705d00",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#544600",
+                        "surface-tint": "#e9c400",
+                        "tertiary-container": "#00f1ff",
+                        "on-secondary-fixed-variant": "#623d3a",
+                        "outline-variant": "#4d4732",
+                        "surface-container-highest": "#393528",
+                        "background": "#161308",
+                        "surface-container": "#231f14",
+                        "tertiary-fixed-dim": "#00dbe8",
+                        "inverse-surface": "#eae2cf",
+                        "secondary-container": "#623d3a",
+                        "on-primary": "#3a3000",
+                        "surface": "#161308"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base_unit": "8px",
+                        "container_max_width": "1280px",
+                        "margin_mobile": "16px",
+                        "margin_desktop": "40px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "code-snippet": ["JetBrains Mono"],
+                        "label-sm": ["Noto Sans"],
+                        "display-lg-mobile": ["Public Sans"],
+                        "display-lg": ["Public Sans"],
+                        "body-md": ["Noto Sans"],
+                        "body-lg": ["Noto Sans"],
+                        "headline-md": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "code-snippet": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-body-md text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- Header (Shared Component TopNavBar) -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface border-b border-outline-variant/20 shadow-md">
+<nav class="flex justify-between items-center px-gutter py-4 max-w-container_max_width mx-auto">
+<div class="flex items-center gap-3" data-purpose="brand-logo">
+<div class="w-10 h-10 flex items-center justify-center">
+<svg class="w-full h-full fill-lpt-yellow" viewBox="0 0 100 100">
+<path d="M50 0 L100 50 L50 100 L0 50 Z" fill="none" stroke="#FFD700" stroke-width="8"></path>
+<path d="M50 20 L80 50 L50 80 L20 50 Z" fill="#FFD700"></path>
+</svg>
+</div>
+<div class="flex flex-col leading-none font-bold text-xl uppercase">
+<span class="">LES PROS</span>
+<span class="text-white">de la Tech</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="index.html">Retour à l'index</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="accueil.html">Accueil</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="propos.html">A Propos</a>
+<a class="text-primary-fixed font-bold border-b-2 border-primary-fixed pb-1 hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95" href="projet.html">Nos Projets</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="mission.html">Mission</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="contact.html">Contact</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="jeux.html">Jeux</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="bg-primary-container text-on-primary-fixed font-bold px-6 py-2 rounded-lg hover:shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all active:scale-95 font-body-md" target="_blank" href="https://os.rudore.co/lpt/challenges/public">Commencer</a>
+</div>
+</nav>
+</header>
+
+<main class="max-w-container_max_width mx-auto px-10 py-12">
+<!-- Hero Section -->
+
+<section class="mb-16 text-center">
+<div>   
+<h1 class="font-display-lg text-display-lg text-primary-fixed mb-4">Nos Projets</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                Découvrez les défis relevés par notre communauté d'élite. De l'architecture cloud aux interfaces ultra-fluides.
+            </p>
+</div>
+</section>
+<!-- Filters Section -->
+<section class="flex flex-wrap justify-center gap-3 mb-12">
+<button class="filter-btn px-6 py-2 rounded-full border border-primary-container bg-primary-container text-on-primary-fixed font-bold transition-all duration-200" data-category="all">
+                Tous
+            </button>
+<button class="filter-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary-fixed transition-all duration-200" data-category="en-cours">
+                En cours
+            </button>
+<button class="filter-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary-fixed transition-all duration-200" data-category="accomplis">
+                Accomplis
+            </button>
+<button class="filter-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary-fixed transition-all duration-200" data-category="a-venir">
+                À venir
+            </button>
+</section>
+<!-- Projects Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
+<!-- Project 1 (En cours) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="en-cours" data-desc="Une plateforme de monitoring prédictif pour infrastructures distribuées, optimisée pour le temps réel." data-long-desc="Le projet Cloud Guardian vise à révolutionner la façon dont les administrateurs cloud interagissent avec leurs environnements. En utilisant des algorithmes de machine learning avancés, le système prédit les goulots d'étranglement avant qu'ils ne surviennent. Déployé sur Kubernetes, il offre une granularité de métrique inégalée." data-tech="Rust, Kubernetes, Grafana, PyTorch" data-title="Cloud Guardian">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A professional high-tech workspace image featuring a programmer working on complex cloud monitoring software. The lighting is low and atmospheric with deep amber glows reflecting off the laptop screen. The overall mood is focused and sophisticated, matching an Obsidian and Gold luxury developer aesthetic." src="https://lh3.googleusercontent.com/aida/AP1WRLsISn-FqyQr5FYijUxMPAb838IM_7dNLL7daK5zLeckYZMYrnc02V84clPBrja2bFSmHKiuAxZhqoBfLOtGUjcUy0ttZOsJCAgEILV_1DWMDWklcMXsvixF26PyOsCJeBViRFi0diDkw9OeWyGzQ9aUoPhhpNJ6tN5TIF0nfHmGcOtrymQZKLo-bpevkKL0zCprg7GdmBo_guXBUJvACxx4Quxdpuydk5YU3EEeACgTrKK9XdvmFbVSiPVe"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-primary-container/10 text-primary-fixed text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">En cours</span>
+<span class="material-symbols-outlined text-primary-fixed">monitoring</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Cloud Guardian</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Une plateforme de monitoring prédictif pour infrastructures distribuées.</p>
+</div>
+</div>
+<!-- Project 2 (Accomplis) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="accomplis" data-desc="Éditeur de code nouvelle génération basé sur le cloud avec collaboration en temps réel native." data-long-desc="Nexus IDE est le résultat d'un an de recherche sur les workflows collaboratifs. Il intègre un moteur de rendu WebGL pour une fluidité absolue et un système de pair-programming décentralisé." data-tech="Next.js, WebGL, WebSockets, Prisma" data-title="Nexus IDE">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A minimalist 3D rendering of a futuristic code editor window. The interface is clean with golden syntax highlighting accents against an obsidian background. Floating in a dark digital void with subtle particle effects. High-end utility and technical precision aesthetic." src="https://lh3.googleusercontent.com/aida/AP1WRLuOy7egqdBkobQ-YTkWPeORc6BYF9akdUgJnLeK0i04iDvr9H6m0T5MzuolX-O--894WHQAugEpo97-I-701HziKnAAkk_dvbLp5DPn3VNgl448zU96awgZcyNePAohGcgfHagMoZAzuhAtZJKuM3IF6FJIiXzG6cN_6Kz01XJYPPArbAWSUTwxHCHVWH9IfWi3G6FgtoBPQxFP8EUSeTDo7hJgh_IYDUOO7sXQO88m-1YNfoBO95jE35kU"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-tertiary-container/10 text-tertiary-fixed-dim text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Accomplis</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">terminal</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Nexus IDE</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Éditeur de code nouvelle génération basé sur le cloud.</p>
+</div>
+</div>
+<!-- Project 3 (À venir) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="a-venir" data-desc="Exploration des protocoles de communication sécurisés pour l'informatique quantique." data-long-desc="Prévu pour Q4 2024, Quantum Bridge explore les limites de la cryptographie post-quantique. Ce projet ambitieux cherche à créer un tunnel de communication insensible aux décryptages classiques." data-tech="Quantum SDK, C++, Go, Cryptography" data-title="Quantum Bridge">
+<div class="h-48 overflow-hidden bg-surface-container flex items-center justify-center">
+<div class="text-center opacity-40">
+<span class="material-symbols-outlined text-6xl text-primary-fixed">hub</span>
+<p class="text-label-sm font-label-sm mt-2">Visuel en cours...</p>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-outline-variant/30 text-on-surface-variant text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">À venir</span>
+<span class="material-symbols-outlined text-outline">lock</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Quantum Bridge</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Exploration des protocoles de communication sécurisés.</p>
+</div>
+</div>
+<!-- Project 4 (En cours) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="en-cours" data-desc="Synthèse vocale émotionnelle ultra-réaliste pour les assistants de nouvelle génération." data-long-desc="Aura AI dépasse le simple texte-vers-parole en analysant le contexte émotionnel pour adapter le ton, le rythme et l'intonation. Développé avec une architecture Transformer propriétaire." data-tech="Python, PyTorch, FastAPI, Docker" data-title="Aura AI">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Close-up of high-tech server racks with golden glowing LED indicators in a dark obsidian-colored data center. The lighting is dramatic and focused, highlighting the precision and scale of modern AI infrastructure. Minimalist tech photography with luxury tones." src="https://lh3.googleusercontent.com/aida/AP1WRLsISn-FqyQr5FYijUxMPAb838IM_7dNLL7daK5zLeckYZMYrnc02V84clPBrja2bFSmHKiuAxZhqoBfLOtGUjcUy0ttZOsJCAgEILV_1DWMDWklcMXsvixF26PyOsCJeBViRFi0diDkw9OeWyGzQ9aUoPhhpNJ6tN5TIF0nfHmGcOtrymQZKLo-bpevkKL0zCprg7GdmBo_guXBUJvACxx4Quxdpuydk5YU3EEeACgTrKK9XdvmFbVSiPVe"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-primary-container/10 text-primary-fixed text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">En cours</span>
+<span class="material-symbols-outlined text-primary-fixed">psychology</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Aura AI</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Synthèse vocale émotionnelle ultra-réaliste.</p>
+</div>
+</div>
+<!-- Project 5 (Accomplis) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="accomplis" data-desc="Base de données orientée graphes distribuée pour les réseaux sociaux à large échelle." data-long-desc="Titan DB a été conçu pour gérer plus de 10 milliards de relations avec une latence sub-milliseconde. Son architecture sharded-first garantit une scalabilité horizontale infinie." data-tech="Go, ScyllaDB, Raft Protocol, gRPC" data-title="Titan DB">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Digital representation of complex data structures and nodes glowing with a soft gold light against a dark obsidian background. A network of lines connecting spheres, creating a sense of deep connectivity and technical excellence. Vercel-style minimalist 3D abstract art." src="https://lh3.googleusercontent.com/aida/AP1WRLuOy7egqdBkobQ-YTkWPeORc6BYF9akdUgJnLeK0i04iDvr9H6m0T5MzuolX-O--894WHQAugEpo97-I-701HziKnAAkk_dvbLp5DPn3VNgl448zU96awgZcyNePAohGcgfHagMoZAzuhAtZJKuM3IF6FJIiXzG6cN_6Kz01XJYPPArbAWSUTwxHCHVWH9IfWi3G6FgtoBPQxFP8EUSeTDo7hJgh_IYDUOO7sXQO88m-1YNfoBO95jE35kU"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-tertiary-container/10 text-tertiary-fixed-dim text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Accomplis</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">database</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Titan DB</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Base de données orientée graphes distribuée.</p>
+</div>
+</div>
+<!-- Project 6 (À venir) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="a-venir" data-desc="Framework UI basé sur les shaders pour des expériences web 3D immersives." data-long-desc="Lumina permet aux développeurs web de créer des interfaces 3D haute performance directement dans le navigateur sans connaissances approfondies en WebGL. Le framework utilise une syntaxe déclarative proche de React." data-tech="TypeScript, WebGL, Three.js, Shaders" data-title="Lumina Framework">
+<div class="h-48 overflow-hidden bg-surface-container flex items-center justify-center">
+<div class="text-center opacity-40">
+<span class="material-symbols-outlined text-6xl text-primary-fixed">auto_awesome</span>
+<p class="text-label-sm font-label-sm mt-2">Visuel en cours...</p>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-outline-variant/30 text-on-surface-variant text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">À venir</span>
+<span class="material-symbols-outlined text-outline">token</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Lumina Framework</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Framework UI basé sur les shaders immersifs.</p>
+</div>
+</div>
+<!-- Project 7 (Miame) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="en-cours" data-desc="Streaming en équipe, en groupe ou en famille. Partage d'accès sûr." data-long-desc="Miame est une plateforme innovante permettant le partage sécurisé et légal d'abonnements de streaming au sein de groupes familiaux ou d'équipes, optimisant les coûts tout en respectant les droits d'accès." data-tech="React, Node.js, PostgreSQL, Stripe" data-title="Miame">
+<div class="h-48 overflow-hidden">
+<img alt="Miame Streaming Access Sharing" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://miame.africa/og-image.jpg"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-primary-container/10 text-primary-fixed text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">En cours</span>
+<span class="material-symbols-outlined text-primary-fixed">group</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Miame</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Streaming en équipe, en groupe ou en famille. Partage d'accès sûr.</p>
+</div>
+</div>
+<!-- Project 8 (Koodi) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="accomplis" data-desc="Liste de codes USSD, idéale pour ne plus les retenir." data-long-desc="Koodi est une application mobile utilitaire qui centralise tous les codes USSD essentiels pour les services bancaires, télécoms et administratifs, fonctionnant hors-ligne pour une accessibilité maximale." data-tech="Flutter, SQLite, Dart" data-title="Koodi">
+<div class="h-48 overflow-hidden">
+<img alt="Koodi USSD Manager" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://rudore.vercel.app/_next/image?url=%2Fkoodi.jpg&w=1920&q=75"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-tertiary-container/10 text-tertiary-fixed-dim text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Accomplis</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">dialpad</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Koodi</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Liste de codes USSD, idéale pour ne plus les retenir.</p>
+</div>
+</div>
+<!-- Project 9 (Speedmaker) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="en-cours" data-desc="Mettre les talents en lumière." data-long-desc="Speedmaker est une plateforme de mise en relation qui utilise l'IA pour propulser les profils techniques les plus prometteurs sur le devant de la scène, facilitant le recrutement de haut niveau." data-tech="Next.js, OpenAI API, Tailwind CSS" data-title="Speedmaker">
+<div class="h-48 overflow-hidden">
+<img alt="Speedmaker Talent Spotlight" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY2fB97YSAnutH_w1UlxNYgPDl7IJYXzDV3F8zRCpl2-MTeYz3SfczXUMBKusTwK1in1Xl7c27THv8OMcNjFhzJcRQOporCdDpMd3cKHs_IVxSz7G-EL16qZzZYoeU1SWZCppN4etMFGXd_ccR3AixtHTB-Zr9WJRJ1rElGC3rNlReQ76HIPHgVhFtiuMoZ-6PZlidk1DQwiIDKF9R3WaRSckNOEtVD-faFc87ngU4chtzoKOiGjSMEw"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-primary-container/10 text-primary-fixed text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">En cours</span>
+<span class="material-symbols-outlined text-primary-fixed">star</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Speedmaker</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Mettre les talents en lumière.</p>
+</div>
+</div>
+<!-- Project 10 (Rudore) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="a-venir" data-desc="Freelance en développement." data-long-desc="Rudore est une agence de développement freelance spécialisée dans les solutions sur mesure pour startups, alliant design minimaliste et excellence technique." data-tech="TypeScript, AWS, Figma" data-title="Rudore">
+<div class="h-48 overflow-hidden">
+<img alt="Rudore Freelance Agency" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9GZgZaFaDvZlH9kubkUeOi5BuVy8rSCB4lLXLwBqfTqHzO04G15fl4lOCffSKEHQ4k51kkIAcSY5H2zqtgh6bPCT7Y7Le9brHkFqr3PZJ608mO3ujuxhXcNMAw9SOoXV-CBdkWzHR4JvLaV9EdK3BT37Ck721KJVhhlqnqJvXxPmzXdsj7GQQjNoxVJnVESk-8AEE3M7rtviTZhtc9cdvZH9mTL9uVK8OG7aN35tZ9NZbQykOj-JjNg"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-outline-variant/30 text-on-surface-variant text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">À venir</span>
+<span class="material-symbols-outlined text-outline">code</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Rudore</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Freelance en développement.</p>
+</div>
+</div>
+<!-- Project 11 (Cloud Arch) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="accomplis" data-desc="Optimisation d'infrastructure cloud hybride." data-long-desc="Ce projet a permis de réduire les coûts opérationnels de 40% pour un client majeur en migrant vers une architecture cloud hybride optimisée et hautement disponible." data-tech="Terraform, AWS, Azure, Docker" data-title="Cloud Arch">
+<div class="h-48 overflow-hidden">
+<img alt="Cloud Architecture Optimization" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOPYXmokfpUTDLFO_HD0O7dX0bhvDVoVGl-tcK3grh3B4QihCg1gRy_kiXQKvhK8aRUvCZfWb4u2vP4HQrcHD8xYrE6n9I6nrUIRkdBgeNijSyibXFJwgpySXRx1QnOKMKL482qHmtwT-vA9vzMxZ5ANTjiB3oGXRi5cGsHFoi3RKj-sYNLW2DoVa59HatrlSNBBKoUnLR-StNrtvcFziFyWV4KaYMMkV66hEqP5xGX2kRjCLsOuzD2A"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-tertiary-container/10 text-tertiary-fixed-dim text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Accomplis</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">cloud_done</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Cloud Arch</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Optimisation d'infrastructure cloud hybride.</p>
+</div>
+</div>
+<!-- Project 12 (Secure Vault) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="a-venir" data-desc="Chiffrement de données ultra-sécurisé." data-long-desc="Secure Vault propose une solution de stockage de données sensibles utilisant un chiffrement de bout en bout de niveau militaire, avec une gestion des clés décentralisée." data-tech="Go, AES-256, Blockchain, gRPC" data-title="Secure Vault">
+<div class="h-48 overflow-hidden">
+<img alt="Secure Data Vault" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZcHbOT376cOlE1P019ndyNvEnMTudazGxB3IEFFo44LD3r9CkBcTInQrQg5w3UrHbBE2oGQ0hRiCmEUnB6kBRQvNVfj6qNvFprps1GI6vQKsQVoz2WQuNB_ygUnCgXXp-Hpz5Wurw7Cwbj2xY-2gObpNGmW-YAC8sosYGUY1unbpngi1dP7oSZjABLKNl_qQmOXYsTh3mNlnfMOjWiwdoUHLrwLeO0_hXBmYzjUaCBTb3YsCzBGHZ6w"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-outline-variant/30 text-on-surface-variant text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">À venir</span>
+<span class="material-symbols-outlined text-outline">security</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">Secure Vault</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Chiffrement de données ultra-sécurisé.</p>
+</div>
+</div>
+<!-- Project 13 (AI Pair) -->
+<div class="project-card group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden transition-all duration-300 cursor-pointer" data-category="en-cours" data-desc="Assistant de programmation intelligent." data-long-desc="AI Pair est un compagnon de codage en temps réel qui suggère des optimisations algorithmiques et détecte les vulnérabilités de sécurité au fur et à mesure de la frappe." data-tech="Python, Transformers, VS Code API" data-title="AI Pair">
+<div class="h-48 overflow-hidden">
+<img alt="AI Pair Programming Assistant" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoFtySfDq161eA5oYL2db-0QFtJ7Br5q8o2j_mUxSIo4bP7cC_n4z31u7UVyaUo-WyZyGdMNKc9APya555Ok24hmAJG2jRzOVolOWg8Cx0oy4J0TW9bU5u4KU2KMYRRkzitA-5fKibs7Dplb8Lk--M8qOJPLuTM4Xq4FxUddR56UjId2s3UTlhYKmR_dbvZXiHCaJjiHnMYf7PYZipgRfytONwi88kG_tC41gyaVWz22euhlBAxPLBZQ"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-primary-container/10 text-primary-fixed text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">En cours</span>
+<span class="material-symbols-outlined text-primary-fixed">smart_toy</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-2">AI Pair</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Assistant de programmation intelligent.</p>
+</div>
+</div></section>
+</main>
+<!-- Project Details Modal -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4" id="project-modal">
+<div class="modal-overlay absolute inset-0"></div>
+<div class="relative bg-surface-container-high rounded-2xl max-w-2xl w-full border border-primary-container/20 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+<button class="absolute top-4 right-4 p-2 text-on-surface-variant hover:text-primary transition-colors" id="close-modal">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="p-8">
+<div class="mb-4" id="modal-badge-container">
+<!-- Dynamic Badge -->
+</div>
+<h2 class="font-display-lg text-display-lg text-primary-fixed mb-6 leading-tight" id="modal-title"></h2>
+<div class="space-y-6">
+<div>
+<h4 class="text-label-sm font-label-sm uppercase tracking-widest text-primary-fixed mb-2">Description</h4>
+<p class="text-body-lg font-body-lg text-on-surface" id="modal-description"></p>
+</div>
+<div>
+<h4 class="text-label-sm font-label-sm uppercase tracking-widest text-primary-fixed mb-2">Technologies</h4>
+<div class="flex flex-wrap gap-2" id="modal-tech">
+<!-- Dynamic Tech Chips -->
+</div>
+</div>
+</div>
+<div class="mt-10 pt-6 border-t border-outline-variant/20 flex justify-end">
+<button class="bg-primary-container text-on-primary-fixed font-bold px-8 py-3 rounded-xl active:scale-95 transition-transform" id="modal-primary-btn">
+                        Consulter le Repo
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10 w-full rounded-t-xl mt-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base_unit py-margin_desktop px-gutter max-w-container_max_width mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="text-headline-md font-headline-md text-primary font-bold mb-4">Les Pros de la Tech</div>
+<p class="text-on-surface-variant font-label-sm text-label-sm opacity-80">© 2026 Les Pros de la Tech.</p>
+<p class="text-on-surface-variant font-label-sm text-label-sm opacity-80">La Tech comme passion.</p>
+<div class="flex gap-4 mt-6">
+<span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">terminal</span>
+<span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">code</span>
+<span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">hub</span>
+</div>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Plateforme</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Défis</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Classement</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Certifications</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Légal</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Mentions Légales</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Confidentialité</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Conditions d'utilisation</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Support</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Support Technique</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="accueil.html#FAQ">FAQ</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="contact.html">Contact</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+        // Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.getAttribute('data-category');
+
+                // Toggle active button style
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-primary-container', 'text-on-primary-fixed', 'font-bold');
+                    b.classList.add('border-outline-variant', 'text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary-container', 'text-on-primary-fixed', 'font-bold');
+                btn.classList.remove('border-outline-variant', 'text-on-surface-variant');
+
+                // Filter cards
+                projectCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('project-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-description');
+        const modalTech = document.getElementById('modal-tech');
+        const modalBadgeContainer = document.getElementById('modal-badge-container');
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.dataset.title;
+                const longDesc = card.dataset.longDesc;
+                const techs = card.dataset.tech.split(',');
+                const category = card.dataset.category;
+
+                modalTitle.textContent = title;
+                modalDesc.textContent = longDesc;
+                
+                // Tech chips
+                modalTech.innerHTML = '';
+                techs.forEach(t => {
+                    const span = document.createElement('span');
+                    span.className = 'px-3 py-1 bg-surface-container text-primary text-[12px] rounded-lg border border-outline-variant/30 font-code-snippet';
+                    span.textContent = t.trim();
+                    modalTech.appendChild(span);
+                });
+
+                // Badge logic
+                modalBadgeContainer.innerHTML = '';
+                const badge = document.createElement('span');
+                badge.className = 'bg-primary-container/20 text-primary-fixed text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-primary-container/30';
+                badge.textContent = category.replace('-', ' ');
+                modalBadgeContainer.appendChild(badge);
+
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal on escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal on clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.classList.contains('modal-overlay')) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body></html>                                                                                                                                              

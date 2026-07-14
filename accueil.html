@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Les Pros de la Tech | Maîtrisez le Web</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@700;800;900&amp;family=Noto+Sans:wght@400;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffd700",
+                    "surface-dim": "#161308",
+                    "on-background": "#eae2cf",
+                    "inverse-surface": "#eae2cf",
+                    "primary": "#fff6df",
+                    "error-container": "#93000a",
+                    "inverse-on-surface": "#343024",
+                    "surface": "#161308",
+                    "surface-container-highest": "#393528",
+                    "surface-bright": "#3d392c",
+                    "on-tertiary": "#00363a",
+                    "tertiary-fixed-dim": "#00dbe8",
+                    "surface-container-low": "#1f1b10",
+                    "outline-variant": "#4d4732",
+                    "on-primary-fixed": "#221b00",
+                    "background": "#161308",
+                    "on-primary-fixed-variant": "#544600",
+                    "surface-container-lowest": "#110e05",
+                    "inverse-primary": "#705d00",
+                    "surface-tint": "#e9c400",
+                    "primary-container": "#ffd700",
+                    "surface-container-high": "#2e2a1e",
+                    "on-secondary-container": "#dba9a4",
+                    "on-surface-variant": "#d0c6ab",
+                    "on-tertiary-container": "#006a70",
+                    "on-primary-container": "#705e00",
+                    "primary-fixed-dim": "#e9c400",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#2f1311",
+                    "on-primary": "#3a3000",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#002022",
+                    "surface-variant": "#393528",
+                    "secondary-container": "#623d3a",
+                    "secondary": "#eebab5",
+                    "surface-container": "#231f14",
+                    "on-secondary": "#482724",
+                    "secondary-fixed": "#ffdad6",
+                    "secondary-fixed-dim": "#eebab5",
+                    "tertiary-fixed": "#79f5ff",
+                    "on-secondary-fixed-variant": "#623d3a",
+                    "on-surface": "#eae2cf",
+                    "tertiary-container": "#00f1ff",
+                    "on-tertiary-fixed-variant": "#004f54",
+                    "outline": "#999077",
+                    "tertiary": "#defcff",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container_max_width": "1280px",
+                    "gutter": "24px",
+                    "margin_desktop": "40px",
+                    "margin_mobile": "16px",
+                    "base_unit": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Noto Sans"],
+                    "code-snippet": ["JetBrains Mono"],
+                    "display-lg": ["Public Sans"],
+                    "body-lg": ["Noto Sans"],
+                    "display-lg-mobile": ["Public Sans"],
+                    "headline-md": ["Public Sans"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "code-snippet": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #161308;
+            color: #eae2cf;
+            background-image: radial-gradient(#321c1a 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(22, 19, 8, 0.4), rgba(22, 19, 8, 0.95));
+        }
+        .faq-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .faq-accordion-item.active .faq-accordion-content {
+            max-height: 500px;
+            opacity: 1;
+        }
+        .faq-accordion-item.active .faq-chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md">
+<!-- TopAppBar Section -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface border-b border-outline-variant/20 shadow-md">
+<nav class="flex justify-between items-center px-gutter py-4 max-w-container_max_width mx-auto">
+<div class="flex items-center gap-3" data-purpose="brand-logo">
+<div class="w-10 h-10 flex items-center justify-center">
+<svg class="w-full h-full fill-lpt-yellow" viewBox="0 0 100 100">
+<path d="M50 0 L100 50 L50 100 L0 50 Z" fill="none" stroke="#FFD700" stroke-width="8"></path>
+<path d="M50 20 L80 50 L50 80 L20 50 Z" fill="#FFD700"></path>
+</svg>
+</div>
+<div class="flex flex-col leading-none font-bold text-xl uppercase">
+<span class="">LES PROS</span>
+<span class="text-white">de la Tech</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="index.html">Retour à l'index</a>
+<a class="text-primary-fixed font-bold border-b-2 border-primary-fixed pb-1 hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95" href="accueil.html">Accueil</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="propos.html">A Propos</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="projet.html">Nos Projets</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="mission.html">Mission</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="contact.html">Contact</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 font-body-md" href="jeux.html">Jeux</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="bg-primary-container text-on-primary-fixed font-bold px-6 py-2 rounded-lg hover:shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all active:scale-95 font-body-md" target="_blank" href="https://os.rudore.co/lpt/challenges/public">Commencer</a>
+</div>
+</nav>
+</header>
+<main class="flex-grow pt-[72px]">
+<!-- Hero Section -->
+<section class="relative min-h-[80vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('file:///C:/Users/Esus/Desktop/LPT.3/images/a_clean_high_quality_professional_photograph_of_a_modern_workspace_with_a.png')"></div>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 max-w-container_max_width mx-auto px-gutter w-full">
+<div class="max-w-3xl">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+                        Maîtrisez le <span class="text-primary-container">Web</span> par la pratique
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl">
+                        Rejoignez l'élite des développeurs francophones. Affrontez des défis réels, améliorez votre code et grimpez au sommet du classement technique.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary-container text-on-primary-fixed font-bold px-8 py-4 rounded-xl text-lg hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] hover:-translate-y-1 transition-all active:scale-95">
+                            Rejoindre le Challenge
+                        </button>
+<button class="border border-primary-container text-on-surface font-semibold px-8 py-4 rounded-xl text-lg hover:bg-surface-container-high transition-all active:scale-95">
+                            Voir les démos
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials/Features Section -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-container_max_width mx-auto px-gutter">
+<div class="text-center mb-16">
+<h2 class="font-headline-md text-headline-md mb-4">Ce qu'ils en disent</h2>
+<div class="w-24 h-1 bg-primary-container mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-[#321c1a] p-8 rounded-xl shadow-md border border-[#c89893]/10 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+<div class="mb-6 flex items-center justify-between">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="format_quote">format_quote</span>
+<div class="bg-primary-container/10 px-3 py-1 rounded-lg text-primary-container font-label-sm text-label-sm">Tech Leader</div>
+</div>
+<h3 class="font-headline-md text-xl mb-4 group-hover:text-primary-container transition-colors">Apprentissage Rapide</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            "La plateforme m'a permis de passer d'un niveau junior à une réelle maîtrise des architectures modernes en moins de trois mois."
+                        </p>
+<div class="mt-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Cédric A.</p>
+<p class="text-sm text-on-surface-variant">Développeur Fullstack</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#321c1a] p-8 rounded-xl shadow-md border border-primary-container/30 border-t-2 border-t-primary-container hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+<div class="mb-6 flex items-center justify-between">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="code">code</span>
+<div class="bg-primary-container/10 px-3 py-1 rounded-lg text-primary-container font-label-sm text-label-sm">Challenger</div>
+</div>
+<h3 class="font-headline-md text-xl mb-4 group-hover:text-primary-container transition-colors">Projets Réels</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            "On ne code pas pour du vent. Les défis sont calqués sur des problématiques métiers réelles rencontrées dans les meilleures scale-ups."
+                        </p>
+<div class="mt-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Stella K.</p>
+<p class="text-sm text-on-surface-variant">Etudiante</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#321c1a] p-8 rounded-xl shadow-md border border-[#c89893]/10 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+<div class="mb-6 flex items-center justify-between">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="groups">groups</span>
+<div class="bg-primary-container/10 px-3 py-1 rounded-lg text-primary-container font-label-sm text-label-sm">Membre Actif</div>
+</div>
+<h3 class="font-headline-md text-xl mb-4 group-hover:text-primary-container transition-colors">Communauté Active</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            "L'entraide dans le groupe Whatsapp est incroyable. On apprend autant en revoyant le code des autres qu'en écrivant le sien."
+                        </p>
+<div class="mt-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Marc-Antoine K.</p>
+<p class="text-sm text-on-surface-variant">CTO @ InnovTech</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-24 bg-surface" id="FAQ">
+<div class="max-w-3xl mx-auto px-gutter">
+<div class="text-center mb-16">
+<h2 class="font-headline-md text-display-lg-mobile md:text-headline-md mb-4" >Questions Fréquentes</h2>
+<p class="text-on-surface-variant font-body-md">Tout ce que vous devez savoir pour commencer votre ascension.</p>
+</div>
+<div class="space-y-2">
+<!-- FAQ Item 1 -->
+<div class="faq-accordion-item border-b border-outline-variant/30 group">
+<button class="w-full py-6 flex justify-between items-center text-left cursor-pointer focus:outline-none" onclick="toggleFAQ(this)">
+<span class="text-body-lg font-bold text-on-surface group-hover:text-primary-container transition-colors">Comment rejoindre la plateforme ?</span>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300 text-primary-container" data-icon="expand_more">expand_more</span>
+</button>
+<div class="faq-accordion-content">
+<p class="pb-6 text-on-surface-variant leading-relaxed">
+                            L'inscription est simple et rapide. Cliquez sur le bouton "Commencer", vous serez diriger vers la plateforme d'accès aux challenges. C'est ouvert à tous 
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-accordion-item border-b border-outline-variant/30 group">
+<button class="w-full py-6 flex justify-between items-center text-left cursor-pointer focus:outline-none" onclick="toggleFAQ(this)">
+<span class="text-body-lg font-bold text-on-surface group-hover:text-primary-container transition-colors">Est-ce que c'est gratuit ?</span>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300 text-primary-container" data-icon="expand_more">expand_more</span>
+</button>
+<div class="faq-accordion-content">
+<p class="pb-6 text-on-surface-variant leading-relaxed">
+                           Oui. Nous proposons un accès "Freemium". Les défis sont gratuits pour tous. Mais être "Challenger" est un statut Premium optionnel débloque des projets complexes, des revues de code personnalisées et l'accès à notre communauté privée.
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-accordion-item border-b border-outline-variant/30 group">
+<button class="w-full py-6 flex justify-between items-center text-left cursor-pointer focus:outline-none" onclick="toggleFAQ(this)">
+<span class="text-body-lg font-bold text-on-surface group-hover:text-primary-container transition-colors">Quels sont les prérequis techniques ?</span>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300 text-primary-container" data-icon="expand_more">expand_more</span>
+</button>
+<div class="faq-accordion-content">
+<p class="pb-6 text-on-surface-variant leading-relaxed">
+                            Aucune. Nos parcours d'apprentissage sont conçus pour vous faire évoluer, que vous soyez débutant motivé ou développeur confirmé cherchant à se spécialiser.
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="faq-accordion-item border-b border-outline-variant/30 group">
+<button class="w-full py-6 flex justify-between items-center text-left cursor-pointer focus:outline-none" onclick="toggleFAQ(this)">
+<span class="text-body-lg font-bold text-on-surface group-hover:text-primary-container transition-colors">Quelle est la durée d'un challenge ?</span>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300 text-primary-container" data-icon="expand_more">expand_more</span>
+</button>
+<div class="faq-accordion-content">
+<p class="pb-6 text-on-surface-variant leading-relaxed">
+                            La durée de chaque défi ou challenge  est de 24 heures. Donc chaque jour, vous avez un nouveau challenge.
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 5 -->
+<div class="faq-accordion-item border-b border-outline-variant/30 group">
+<button class="w-full py-6 flex justify-between items-center text-left cursor-pointer focus:outline-none" onclick="toggleFAQ(this)">
+<span class="text-body-lg font-bold text-on-surface group-hover:text-primary-container transition-colors">Obtient-on une certification ?</span>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300 text-primary-container" data-icon="expand_more">expand_more</span>
+</button>
+<div class="faq-accordion-content">
+<p class="pb-6 text-on-surface-variant leading-relaxed">
+                            Le certificat est réservé aux challengers et aux membres actifs ( même s'il ne sont pas challenger ). Chaque parcours validé génère un certificat d'excellence technique vérifiable que vous pouvez ajouter à votre profil LinkedIn ou votre CV pour prouver vos compétences réelles aux recruteurs.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Banner -->
+<section class="max-w-container_max_width mx-auto px-gutter py-20">
+<div class="bg-primary-container rounded-3xl p-12 md:p-20 text-center relative overflow-hidden group">
+<!-- Decorative element -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+<div class="absolute -left-20 -bottom-20 w-64 h-64 bg-black/5 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary-fixed mb-6 relative z-10">
+                    Prêt à coder ?
+                </h2>
+<p class="font-body-lg text-on-primary-fixed-variant mb-10 max-w-xl mx-auto relative z-10">
+                    N'attendez plus pour transformer votre carrière. Inscrivez-vous gratuitement et commencez votre premier défi en moins de 2 minutes.
+                </p>
+<div class="relative z-10">
+<button class="bg-on-primary-fixed text-primary-fixed font-black px-12 py-5 rounded-full text-xl shadow-lg hover:scale-105 active:scale-95 transition-all">
+                        Lancez-vous maintenant
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10 w-full rounded-t-xl mt-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base_unit py-margin_desktop px-gutter max-w-container_max_width mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="text-headline-md font-headline-md text-primary font-bold mb-4">Les Pros de la Tech</div>
+<p class="text-on-surface-variant font-label-sm text-label-sm opacity-80">© 2026 Les Pros de la Tech.</p>
+<p class="text-on-surface-variant font-label-sm text-label-sm opacity-80">La Tech comme passion.</p>
+<div class="flex gap-4 mt-6">
+<span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">terminal</span>
+<span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">code</span>
+<span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:text-primary">hub</span>
+</div>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Plateforme</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Défis</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Classement</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Certifications</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Légal</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Mentions Légales</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Confidentialité</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Conditions d'utilisation</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-bold mb-4 uppercase text-label-sm tracking-widest">Support</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#">Support Technique</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="#FAQ">FAQ</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-primary-fixed transition-colors" href="contact.html">Contact</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+        // FAQ Accordion logic
+        function toggleFAQ(button) {
+            const item = button.closest('.faq-accordion-item');
+            const isActive = item.classList.contains('active');
+            
+            // Close all items
+            document.querySelectorAll('.faq-accordion-item').forEach(i => {
+                i.classList.remove('active');
+            });
+            
+            // Toggle current if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Micro-interactions and subtle effects
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.bg-\\[\\#321c1a\\]');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                }
+            });
+        });
+
+        // Sticky header behavior
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 0) {
+                header.classList.remove('shadow-xl');
+                return;
+            }
+            if (currentScroll > lastScroll) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.classList.add('shadow-xl');
+            }
+            lastScroll = currentScroll;
+            header.style.transition = 'transform 0.3s ease-in-out';
+        });
+    </script>
+</body></html>

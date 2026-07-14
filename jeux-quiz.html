@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pro Tech Challenge - Le Quiz de l'Élite | Les Pros de la Tech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@700;800&amp;family=Noto+Sans:wght@400;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#fff6df",
+                        "outline-variant": "#4d4732",
+                        "surface-variant": "#393528",
+                        "surface-dim": "#161308",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1f1b10",
+                        "primary-fixed": "#ffe16d",
+                        "primary-container": "#ffd700",
+                        "on-surface": "#eae2cf",
+                        "surface-container-lowest": "#110e05",
+                        "on-surface-variant": "#d0c6ab",
+                        "background": "#161308",
+                        "surface": "#161308",
+                        "outline": "#999077",
+                        
+                        "accent-yellow": "#FFD700",
+                        "background-dark": "#221311",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base_unit": "8px",
+                        "gutter": "24px",
+                        "container_max_width": "1280px",
+                        "margin_mobile": "16px",
+                        "margin_desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Noto Sans"],
+                        "code-snippet": ["JetBrains Mono"],
+                        "body-md": ["Noto Sans"],
+                        "display-lg": ["Public Sans"],
+                        "display-lg-mobile": ["Public Sans"],
+                        "body-lg": ["Noto Sans"],
+                        "headline-md": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "code-snippet": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #161308;
+            background-image: radial-gradient(#321c1a 1px, transparent 0);
+            background-size: 24px 24px;
+            color: #eae2cf;
+        }
+        .glass-card {
+            background: rgba(50, 28, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(200, 152, 147, 0.2);
+        }
+        .timer-bar {
+            transition: width 1s linear;
+        }
+        .correct-answer {
+            background: rgba(16, 185, 129, 0.2) !important;
+            border-color: #10b981 !important;
+        }
+        .wrong-answer {
+            background: rgba(239, 68, 68, 0.2) !important;
+            border-color: #ef4444 !important;
+        }
+        .quiz-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        .pulse-accent {
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<!-- Header / Back Navigation -->
+<header class="flex items-center justify-between border-b border-solid border-[#472724] px-6 md:px-40 py-6 bg-[#221311]/80 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<a class="flex items-center gap-2 group transition-all" href="jeux.html">
+<span class="material-symbols-outlined text-accent-yellow group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="text-sm font-medium">Retour au menu</span>
+</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-8 text-accent-yellow">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648C8.00331 15.2331 11.0856 16.7722 13.8261 17.4264Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">Web Dev Challenge</h2>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center py-margin_desktop px-margin_mobile relative overflow-hidden">
+<!-- Background Glows -->
+<div class="absolute -top-40 -right-40 w-96 h-96 bg-primary-container/5 blur-[120px] rounded-full"></div>
+<div class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary-container/5 blur-[120px] rounded-full"></div>
+<div class="w-full max-w-4xl relative z-10" id="quiz-container">
+<!-- Start Screen -->
+<div class="glass-card rounded-xl p-12 text-center border-t-2 border-primary-container" id="start-screen">
+<span class="text-primary-container font-label-sm text-label-sm uppercase tracking-widest mb-4 block">Challenge Hebdomadaire</span>
+<h1 class="font-display-lg text-display-lg mb-6 leading-tight">Pro Tech Challenge<br/><span class="text-primary-container italic font-light">Le Quiz de l'Élite</span></h1>
+<p class="text-on-surface-variant text-body-lg font-body-lg mb-10 max-w-2xl mx-auto">
+                    Prouvez votre expertise technique. 5 questions de haut niveau, 15 secondes par réponse. Le code n'attend pas les hésitants.
+                </p>
+<button class="group relative px-10 py-5 bg-primary-container text-surface rounded-xl font-bold text-headline-md flex items-center gap-3 mx-auto transition-all hover:scale-105 active:scale-95 shadow-xl" onclick="startQuiz()">
+                    Lancer le Challenge
+                    <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">terminal</span>
+</button>
+</div>
+<!-- Question Screen (Hidden by default) -->
+<div class="hidden quiz-transition" id="question-screen">
+<div class="glass-card rounded-xl overflow-hidden border-t-2 border-primary-container">
+<!-- Progress Bar Container -->
+<div class="h-2 w-full bg-surface-variant">
+<div class="h-full bg-primary-container timer-bar w-full" id="timer-bar"></div>
+</div>
+<div class="p-8 md:p-12">
+<div class="flex justify-between items-center mb-8">
+<span class="font-code-snippet text-on-surface-variant px-4 py-1 bg-surface-variant/50 rounded-full border border-outline/20" id="question-index">Question 01/05</span>
+<div class="flex items-center gap-2 text-primary-container font-bold">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-code-snippet" id="timer-text">15s</span>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md mb-10 text-primary" id="question-text">Chargement de la question...</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="options-container">
+<!-- Options injected by JS -->
+</div>
+</div>
+</div>
+</div>
+<!-- Result Screen (Hidden by default) -->
+<div class="hidden quiz-transition" id="result-screen">
+<div class="glass-card rounded-xl p-12 text-center border-t-2 border-primary-container relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container/5 -z-10" id="result-glow"></div>
+<div class="mb-8">
+<div class="w-24 h-24 rounded-full bg-primary-container/20 flex items-center justify-center mx-auto mb-6" id="result-icon-container">
+<span class="material-symbols-outlined text-5xl text-primary-container" id="result-icon" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2" id="result-level">Expert</h2>
+<p class="text-headline-md font-headline-md text-primary-container mb-4" id="result-score">Score: 5/5</p>
+</div>
+<p class="text-on-surface-variant text-body-lg font-body-lg mb-10 max-w-lg mx-auto" id="result-message">
+                        Félicitations ! Vous maîtrisez les fondamentaux et les subtilités du développement moderne.
+                    </p>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<button class="px-8 py-4 bg-primary-container text-surface rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary-fixed transition-all" onclick="restartQuiz()">
+<span class="material-symbols-outlined">refresh</span>
+                            Recommencer
+                        </button>
+<button class="px-8 py-4 border border-outline text-primary rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined">share</span>
+                            Partager mon score
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-[#472724] px-6 md:px-40 py-12 flex flex-col md:flex-row justify-between items-center gap-8 bg-[#1a0e0c]">
+<div class="flex items-center gap-2">
+<div class="size-6 text-accent-yellow">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z"></path>
+</svg>
+</div>
+<span class="font-bold tracking-tight">Web Dev Challenge</span>
+</div>
+<p class="text-sm text-[#c89893]">© 2026 Les Pros de la Tech. Tous droits réservés.</p>
+<div class="flex gap-6">
+<a class="text-sm hover:text-accent-yellow" href="#">Confidentialité</a>
+<a class="text-sm hover:text-accent-yellow" href="#">Mentions Légales</a>
+</div>
+</footer>
+<script>
+        const questions = [
+            {
+                question: "Quelle méthode JavaScript est utilisée pour créer un nouveau tableau avec tous les éléments qui passent un test ?",
+                options: ["forEach()", "map()", "filter()", "reduce()"],
+                correct: 2
+            },
+            {
+                question: "Quel hook React permet de gérer les effets de bord dans les composants fonctionnels ?",
+                options: ["useState", "useEffect", "useContext", "useReducer"],
+                correct: 1
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour changer la couleur de fond d'un élément ?",
+                options: ["color", "bgcolor", "background-color", "fill"],
+                correct: 2
+            },
+            {
+                question: "Dans le modèle de boîte CSS (Box Model), qu'est-ce qui se trouve entre le padding et la margin ?",
+                options: ["Content", "Border", "Outline", "Shadow"],
+                correct: 1
+            },
+            {
+                question: "Que signifie l'acronyme DOM dans le développement web ?",
+                options: ["Document Object Model", "Data Object Management", "Digital Object Method", "Display Operation Map"],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let timer;
+        let timeLeft = 15;
+        let canAnswer = true;
+
+        const startScreen = document.getElementById('start-screen');
+        const questionScreen = document.getElementById('question-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const timerBar = document.getElementById('timer-bar');
+        const timerText = document.getElementById('timer-text');
+        const questionText = document.getElementById('question-text');
+        const questionIndex = document.getElementById('question-index');
+        const optionsContainer = document.getElementById('options-container');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            questionScreen.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            timeLeft = 15;
+            updateTimerDisplay();
+            
+            const q = questions[currentQuestion];
+            questionIndex.innerText = `Question ${String(currentQuestion + 1).padStart(2, '0')}/${String(questions.length).padStart(2, '0')}`;
+            questionText.innerText = q.question;
+            
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "p-5 glass-card rounded-lg text-left text-primary hover:border-primary-container/60 hover:bg-white/5 transition-all flex items-center justify-between group";
+                btn.innerHTML = `
+                    <span>${opt}</span>
+                    <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+                `;
+                btn.onclick = () => checkAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    autoAdvance();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const percentage = (timeLeft / 15) * 100;
+            timerBar.style.width = `${percentage}%`;
+            timerText.innerText = `${timeLeft}s`;
+            
+            if (timeLeft <= 5) {
+                timerBar.classList.add('bg-error');
+                timerBar.classList.remove('bg-primary-container');
+            } else {
+                timerBar.classList.remove('bg-error');
+                timerBar.classList.add('bg-primary-container');
+            }
+        }
+
+        function checkAnswer(idx) {
+            if (!canAnswer) return;
+            canAnswer = false;
+            clearInterval(timer);
+
+            const buttons = optionsContainer.getElementsByTagName('button');
+            const correctIdx = questions[currentQuestion].correct;
+
+            if (idx === correctIdx) {
+                score++;
+                buttons[idx].classList.add('correct-answer');
+            } else {
+                buttons[idx].classList.add('wrong-answer');
+                buttons[correctIdx].classList.add('correct-answer');
+            }
+
+            setTimeout(() => {
+                nextQuestion();
+            }, 1500);
+        }
+
+        function autoAdvance() {
+            if (!canAnswer) return;
+            canAnswer = false;
+            const correctIdx = questions[currentQuestion].correct;
+            const buttons = optionsContainer.getElementsByTagName('button');
+            buttons[correctIdx].classList.add('correct-answer');
+            
+            setTimeout(() => {
+                nextQuestion();
+            }, 1500);
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            questionScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+
+            const levelText = document.getElementById('result-level');
+            const scoreText = document.getElementById('result-score');
+            const messageText = document.getElementById('result-message');
+            const resultIcon = document.getElementById('result-icon');
+
+            scoreText.innerText = `Score: ${score}/${questions.length}`;
+
+            if (score <= 2) {
+                levelText.innerText = "Novice";
+                messageText.innerText = "Tout le monde commence quelque part. Ne vous découragez pas et continuez à apprendre les bases.";
+                resultIcon.innerText = "school";
+            } else if (score <= 4) {
+                levelText.innerText = "Développeur";
+                messageText.innerText = "Beau travail ! Vous avez une base solide. Continuez à pratiquer pour atteindre le sommet de la pyramide tech.";
+                resultIcon.innerText = "code";
+            } else {
+                levelText.innerText = "Expert";
+                messageText.innerText = "Félicitations ! Vous maîtrisez les fondamentaux et les subtilités du développement moderne. Une véritable élite de la tech.";
+                resultIcon.innerText = "workspace_premium";
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            resultScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body></html>
